@@ -13,6 +13,11 @@ M.base46 = {
 		NvimTreeFolderIcon = { fg = "#D4D4D4" },
 		NvimTreeOpenedFolderIcon = { fg = "#D4D4D4" },
 		NvimTreeClosedFolderIcon = { fg = "#D4D4D4" },
+		["@tag.attribute"] = { fg = "#87C3FF" },
+		["@attribute"] = { fg = "#87C3FF" },
+		["@lsp.type.property"] = { fg = "#87C3FF" },
+		["@lsp.typemod.property"] = { fg = "#87C3FF" },
+		["@lsp.typemod.property.declaration"] = { fg = "#87C3FF" },
 	},
 
 	-- hl_override = {

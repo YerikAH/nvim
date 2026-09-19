@@ -87,6 +87,14 @@ M.polish_hl = vim.tbl_deep_extend("force", M.polish_hl or {}, {
     ["@variable.member"] = { fg = M.base_30.blue },
     ["@variable.member.key"] = { fg = M.base_30.blue },
     ["@field"] = { fg = M.base_30.blue },
+    ["@attribute"] = { fg = M.base_30.blue },
+    ["@tag.attribute"] = { fg = M.base_30.blue },
+    ["@tag"] = { fg = M.base_30.blue },
+    ["@lsp.type.property"] = { fg = M.base_30.blue },
+    ["@lsp.type.variable"] = { fg = M.base_30.white },
+    ["@lsp.type.parameter"] = { fg = M.base_30.orange },
+    ["@lsp.typemod.property.declaration"] = { fg = M.base_30.blue },
+    ["@lsp.typemod.property"] = { fg = M.base_30.blue },
   },
 })
 

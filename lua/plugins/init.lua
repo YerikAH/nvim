@@ -74,4 +74,38 @@ return {
       auto_install = true,
     },
   },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      renderer = {
+        icons = {
+          glyphs = {
+            default = "",
+            symlink = "",
+            bookmark = "󰆤",
+            folder = {
+              arrow_closed = "",
+              arrow_open = "",
+              default = "",
+              empty = "",
+              empty_open = "",
+              open = "",
+              symlink = "",
+              symlink_open = "",
+            },
+            git = {
+              unstaged = "●",
+              staged = "●",
+              unmerged = "●",
+              renamed = "➜",
+              untracked = "●",
+              deleted = "✖",
+              ignored = "◌",
+            },
+          },
+        },
+      },
+    },
+  },
 }

@@ -74,6 +74,9 @@ M.polish_hl = vim.tbl_deep_extend("force", M.polish_hl or {}, {
     ["@comment"] = { fg = M.base_30.green, italic = true },
     ["@keyword"] = { fg = M.base_30.green1 },
     ["@keyword.function"] = { fg = M.base_30.green1 },
+    ["@keyword.conditional"] = { fg = M.base_30.green1 },
+    ["@keyword.exception"] = { fg = M.base_30.green1 },
+    ["@keyword.return"] = { fg = M.base_30.green1 },
     ["@function"] = { fg = M.base_30.orange },
     ["@function.call"] = { fg = M.base_30.orange },
     ["@string"] = { fg = M.base_30.pink },
@@ -81,6 +84,9 @@ M.polish_hl = vim.tbl_deep_extend("force", M.polish_hl or {}, {
     ["@type"] = { fg = M.base_30.blue },
     ["@variable"] = { fg = M.base_30.white },
     ["@property"] = { fg = M.base_30.blue },
+    ["@variable.member"] = { fg = M.base_30.blue },
+    ["@variable.member.key"] = { fg = M.base_30.blue },
+    ["@field"] = { fg = M.base_30.blue },
   },
 })
 

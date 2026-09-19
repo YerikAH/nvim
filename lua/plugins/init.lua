@@ -107,7 +107,21 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     opts = {
+      view = {
+        preserve_window_proportions = true,
+        signcolumn = "no",
+        width = {
+          min = 32,
+          max = function()
+            return math.max(36, math.min(55, math.floor(vim.o.columns * 0.4)))
+          end,
+          padding = 2,
+        },
+      },
       renderer = {
+        full_name = true,
+        group_empty = true,
+        indent_width = 1,
         highlight_git = false,
         icons = {
           show = {

@@ -81,8 +81,18 @@ return {
       renderer = {
         highlight_git = false,
         icons = {
+          show = {
+            file = false,
+            folder = false,
+            folder_arrow = false,
+            git = false,
+            modified = false,
+            hidden = false,
+            diagnostics = false,
+            bookmarks = false,
+          },
           web_devicons = {
-            file = { enable = true, color = false },
+            file = { enable = false, color = false },
             folder = { enable = false, color = false },
           },
           glyphs = {

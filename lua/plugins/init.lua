@@ -123,4 +123,28 @@ return {
       },
     },
   },
+
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        prompt_prefix = " ",
+        selection_caret = " ",
+        entry_prefix = " ",
+        disable_devicons = true,
+        sorting_strategy = "ascending",
+        layout_config = {
+          horizontal = {
+            prompt_position = "top",
+            preview_width = 0.55,
+          },
+          width = 0.87,
+          height = 0.80,
+        },
+        borderchars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+      },
+      extensions_list = { "themes", "terms" },
+      extensions = {},
+    },
+  },
 }

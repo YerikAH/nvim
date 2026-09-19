@@ -74,12 +74,13 @@ local function clean_mode()
 		return ""
 	end
 
-	local separators = utils.separators.default
+	local separators = utils.separators.round
 	local modes = utils.modes
 	local mode = modes[vim.api.nvim_get_mode().mode] or modes.n
 	local mode_name = mode[2]
 
-	return "%#St_" .. mode_name .. "Mode# " .. mode[1]
+	return "%#St_" .. mode_name .. "ModeSep#" .. separators.left
+		.. "%#St_" .. mode_name .. "Mode# " .. mode[1]
 		.. "%#St_" .. mode_name .. "ModeSep#" .. separators.right
 		.. "%#ST_EmptySpace#" .. separators.right
 end

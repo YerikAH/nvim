@@ -100,6 +100,11 @@ M.polish_hl = vim.tbl_deep_extend("force", M.polish_hl or {}, {
     St_pos_text = { bg = M.base_30.black2, fg = M.base_30.light_grey },
     ST_EmptySpace = { bg = M.base_30.black, fg = M.base_30.line },
   },
+  telescope = {
+    TelescopePromptTitle = { fg = M.base_30.pink, bg = "NONE", bold = true },
+    TelescopeResultsTitle = { fg = M.base_30.blue, bg = "NONE", bold = true },
+    TelescopePreviewTitle = { fg = M.base_30.green, bg = "NONE", bold = true },
+  },
   treesitter = {
     ["@comment"] = { fg = M.base_30.green, italic = true },
     ["@keyword"] = { fg = M.base_30.green1 },

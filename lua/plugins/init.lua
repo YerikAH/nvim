@@ -1,3 +1,31 @@
+local function rounded_telescope_titles(prompt_bufnr, map)
+  map("n", "q", require("telescope.actions").close)
+
+  vim.schedule(function()
+    local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+
+    local function rounded(title)
+      if not title or title == false then
+        return title
+      end
+
+      title = tostring(title):gsub("^%s+", ""):gsub("%s+$", "")
+      return "╭ " .. title .. " ╮"
+    end
+
+    for _, section in ipairs { "prompt", "results", "preview" } do
+      local window = picker.layout and picker.layout[section]
+      local title = picker[section .. "_title"]
+
+      if window and window.border and title then
+        window.border:change_title(rounded(title))
+      end
+    end
+  end)
+
+  return true
+end
+
 return {
   {
     "stevearc/conform.nvim",
@@ -132,6 +160,7 @@ return {
         selection_caret = " ",
         entry_prefix = " ",
         disable_devicons = true,
+        dynamic_preview_title = false,
         sorting_strategy = "ascending",
         layout_config = {
           horizontal = {
@@ -144,12 +173,12 @@ return {
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
       },
       pickers = {
-        find_files = { disable_devicons = true },
-        git_files = { disable_devicons = true },
-        oldfiles = { disable_devicons = true },
-        live_grep = { disable_devicons = true },
-        grep_string = { disable_devicons = true },
-        buffers = { disable_devicons = true },
+        find_files = { disable_devicons = true, attach_mappings = rounded_telescope_titles },
+        git_files = { disable_devicons = true, attach_mappings = rounded_telescope_titles },
+        oldfiles = { disable_devicons = true, attach_mappings = rounded_telescope_titles },
+        live_grep = { disable_devicons = true, attach_mappings = rounded_telescope_titles },
+        grep_string = { disable_devicons = true, attach_mappings = rounded_telescope_titles },
+        buffers = { disable_devicons = true, attach_mappings = rounded_telescope_titles },
       },
       extensions_list = { "themes", "terms" },
       extensions = {},

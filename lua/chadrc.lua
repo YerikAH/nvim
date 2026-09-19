@@ -18,6 +18,9 @@ M.base46 = {
 		["@lsp.type.property"] = { fg = "#87C3FF" },
 		["@lsp.typemod.property"] = { fg = "#87C3FF" },
 		["@lsp.typemod.property.declaration"] = { fg = "#87C3FF" },
+		TelescopePromptTitle = { fg = "#E394DC", bg = "NONE", bold = true },
+		TelescopeResultsTitle = { fg = "#87C3FF", bg = "NONE", bold = true },
+		TelescopePreviewTitle = { fg = "#A8CC7C", bg = "NONE", bold = true },
 	},
 
 	-- hl_override = {

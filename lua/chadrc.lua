@@ -21,7 +21,7 @@ M.base46 = {
 	-- },
 }
 
-local function rounded_buffers()
+local function clean_buffers()
 	local api = vim.api
 	local utils = require("nvchad.tabufline.utils")
 	local txt, btn = utils.txt, utils.btn
@@ -57,17 +57,7 @@ local function rounded_buffers()
 	vim.t.bufs = vim.tbl_filter(api.nvim_buf_is_valid, vim.t.bufs or {})
 
 	for i, nr in ipairs(vim.t.bufs) do
-		local active = api.nvim_get_current_buf() == nr
-		local group = active and "TbBufOn" or "TbBufOff"
-		local hl = api.nvim_get_hl(0, { name = group, link = false })
-		local separator = "TbRound" .. (active and "On" or "Off")
-
-		api.nvim_set_hl(0, separator, {
-			fg = hl.bg or hl.fg,
-			bg = "NONE",
-		})
-
-		table.insert(buffers, "%#" .. separator .. "#" .. style_buf_without_icon(nr, i, 21) .. "%#" .. separator .. "#")
+		table.insert(buffers, style_buf_without_icon(nr, i, 21))
 	end
 
 	return table.concat(buffers) .. "%="
@@ -79,7 +69,7 @@ M.ui = {
 	},
 	tabufline = {
 		modules = {
-			buffers = rounded_buffers,
+			buffers = clean_buffers,
 		},
 	},
 }

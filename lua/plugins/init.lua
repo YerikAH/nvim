@@ -111,7 +111,7 @@ return {
         icons = {
           show = {
             file = false,
-            folder = false,
+            folder = true,
             folder_arrow = false,
             git = false,
             modified = false,

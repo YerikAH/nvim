@@ -14,15 +14,20 @@ local options = {
     jsonc = { "prettier" },
     yaml = { "prettier" },
     markdown = { "prettier" },
+    ["markdown.mdx"] = { "prettier" },
     graphql = { "prettier" },
     vue = { "prettier" },
+    svelte = { "prettier" },
     python = { "isort", "black" },
   },
 
   format_on_save = {
     timeout_ms = 3000,
-    lsp_fallback = true,
+    lsp_format = "fallback",
   },
+
+  notify_on_error = true,
+  notify_no_formatters = false,
 }
 
 return options

@@ -94,10 +94,10 @@ M.polish_hl = vim.tbl_deep_extend("force", M.polish_hl or {}, {
     St_gitIcons = { fg = M.base_30.green1, bold = true },
     St_Lsp = { fg = M.base_30.nord_blue },
     St_LspMsg = { fg = M.base_30.light_grey },
-    St_cwd_icon = { bg = M.base_30.pink, fg = M.base_30.black },
     St_cwd_text = { bg = M.base_30.black2, fg = M.base_30.white },
-    St_pos_icon = { fg = M.base_30.nord_blue },
+    St_cwd_sep = { fg = M.base_30.black2, bg = M.base_30.black },
     St_pos_text = { bg = M.base_30.black2, fg = M.base_30.light_grey },
+    St_pos_sep = { fg = M.base_30.black2, bg = M.base_30.black },
     ST_EmptySpace = { bg = M.base_30.black, fg = M.base_30.line },
   },
   telescope = {

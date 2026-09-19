@@ -85,7 +85,90 @@ local function clean_mode()
 	return "%#St_" .. mode_name .. "ModeSep#" .. separators.left
 		.. "%#St_" .. mode_name .. "Mode# " .. mode[1]
 		.. "%#St_" .. mode_name .. "ModeSep#" .. separators.right
-		.. "%#ST_EmptySpace#" .. separators.right
+end
+
+local function statusline_segment(text, group, separator_group)
+	local separators = require("nvchad.stl.utils").separators.round
+	return "%#" .. separator_group .. "#" .. separators.left
+		.. "%#" .. group .. "# " .. text .. " "
+		.. "%#" .. separator_group .. "#" .. separators.right
+end
+
+local function clean_file()
+	local utils = require "nvchad.stl.utils"
+	local path = vim.api.nvim_buf_get_name(utils.stbufnr())
+	local name = path == "" and "Empty" or (path:match "([^/\\]+)[/\\]*$" or path)
+	return statusline_segment(name, "St_file", "St_file_sep")
+end
+
+local function clean_git()
+	local utils = require "nvchad.stl.utils"
+	local bufnr = utils.stbufnr()
+	local status = vim.b[bufnr].gitsigns_status_dict
+
+	if not status or not status.head or status.head == "" then
+		return ""
+	end
+
+	local parts = { status.head }
+	if status.added and status.added > 0 then
+		table.insert(parts, "+" .. status.added)
+	end
+	if status.changed and status.changed > 0 then
+		table.insert(parts, "~" .. status.changed)
+	end
+	if status.removed and status.removed > 0 then
+		table.insert(parts, "-" .. status.removed)
+	end
+
+	return "%#St_gitIcons#  " .. table.concat(parts, " ") .. " "
+end
+
+local function clean_diagnostics()
+	local utils = require "nvchad.stl.utils"
+	local bufnr = utils.stbufnr()
+	local severity = vim.diagnostic.severity
+	local groups = {
+		{ "E", "St_lspError", severity.ERROR },
+		{ "W", "St_lspWarning", severity.WARN },
+		{ "H", "St_lspHints", severity.HINT },
+		{ "I", "St_lspInfo", severity.INFO },
+	}
+	local result = {}
+
+	for _, item in ipairs(groups) do
+		local count = #vim.diagnostic.get(bufnr, { severity = item[3] })
+		if count > 0 then
+			table.insert(result, "%#" .. item[2] .. "#" .. item[1] .. " " .. count)
+		end
+	end
+
+	return #result > 0 and (" " .. table.concat(result, "  ") .. " ") or ""
+end
+
+local function clean_lsp()
+	local utils = require "nvchad.stl.utils"
+	local bufnr = utils.stbufnr()
+
+	for _, client in ipairs(vim.lsp.get_clients { bufnr = bufnr }) do
+		return "%#St_Lsp#  LSP ~ " .. client.name .. " "
+	end
+
+	return ""
+end
+
+local function clean_cwd()
+	if vim.o.columns <= 85 then
+		return ""
+	end
+
+	local cwd = vim.uv.cwd() or ""
+	local name = cwd:match "([^/\\]+)[/\\]*$" or cwd
+	return statusline_segment(name, "St_cwd_text", "St_cwd_sep")
+end
+
+local function clean_cursor()
+	return statusline_segment("%l/%v", "St_pos_text", "St_pos_sep")
 end
 
 M.ui = {
@@ -93,6 +176,13 @@ M.ui = {
 		separator_style = "round",
 		modules = {
 			mode = clean_mode,
+			file = clean_file,
+			git = clean_git,
+			lsp_msg = "",
+			diagnostics = clean_diagnostics,
+			lsp = clean_lsp,
+			cwd = clean_cwd,
+			cursor = clean_cursor,
 		},
 	},
 	tabufline = {

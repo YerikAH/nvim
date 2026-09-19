@@ -63,9 +63,28 @@ local function clean_buffers()
 	return table.concat(buffers) .. "%="
 end
 
+local function clean_mode()
+	local utils = require "nvchad.stl.utils"
+	if not utils.is_activewin() then
+		return ""
+	end
+
+	local separators = utils.separators.default
+	local modes = utils.modes
+	local mode = modes[vim.api.nvim_get_mode().mode] or modes.n
+	local mode_name = mode[2]
+
+	return "%#St_" .. mode_name .. "Mode# " .. mode[1]
+		.. "%#St_" .. mode_name .. "ModeSep#" .. separators.right
+		.. "%#ST_EmptySpace#" .. separators.right
+end
+
 M.ui = {
 	statusline = {
 		separator_style = "round",
+		modules = {
+			mode = clean_mode,
+		},
 	},
 	tabufline = {
 		modules = {

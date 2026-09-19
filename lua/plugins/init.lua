@@ -79,7 +79,12 @@ return {
     "nvim-tree/nvim-tree.lua",
     opts = {
       renderer = {
+        highlight_git = false,
         icons = {
+          web_devicons = {
+            file = { enable = true, color = false },
+            folder = { enable = false, color = false },
+          },
           glyphs = {
             default = "",
             symlink = "",

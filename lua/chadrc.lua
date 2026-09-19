@@ -7,7 +7,13 @@ local M = {}
 
 M.base46 = {
 	theme = "cursor_dark",
-	transparency = false,
+	transparency = true,
+	hl_override = {
+		NvimTreeFileIcon = { fg = "#D4D4D4" },
+		NvimTreeFolderIcon = { fg = "#D4D4D4" },
+		NvimTreeOpenedFolderIcon = { fg = "#D4D4D4" },
+		NvimTreeClosedFolderIcon = { fg = "#D4D4D4" },
+	},
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },

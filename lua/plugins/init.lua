@@ -87,10 +87,10 @@ return {
             folder = {
               arrow_closed = "",
               arrow_open = "",
-              default = "",
+              default = "",
               empty = "",
               empty_open = "",
-              open = "",
+              open = "",
               symlink = "",
               symlink_open = "",
             },

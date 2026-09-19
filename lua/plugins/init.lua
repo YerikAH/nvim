@@ -10,7 +10,7 @@ local function rounded_telescope_titles(prompt_bufnr, map)
       end
 
       title = tostring(title):gsub("^%s+", ""):gsub("%s+$", "")
-      return "╭ " .. title .. " ╮"
+      return "  " .. title .. "  "
     end
 
     for _, section in ipairs { "prompt", "results", "preview" } do

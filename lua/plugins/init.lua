@@ -107,6 +107,11 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     opts = {
+      filters = {
+        git_ignored = true,
+        dotfiles = false,
+        exclude = { "/%.env[^/]*$" },
+      },
       view = {
         preserve_window_proportions = true,
         signcolumn = "no",
